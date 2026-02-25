@@ -12,9 +12,13 @@ from sqlalchemy import select
 from datetime import datetime, timedelta  # 시간을 다루기 위해 추가
 from database import get_db
 import models
+import os from dotenv import load_dotenv# .env 파일의 내용 불러오기
+
+load_dotenv()# 이제 직접 문자열을 쓰지 않고 환경 변수에서 가져옵니다
 
 # JWT 서명 설정
-SECRET_KEY = "team2_project"
+SECRET_KEY = os.getenv("SECRET_KEY")
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
 ALGORITHM = "HS256"
 
 # 비밀번호 암호화 컨텍스트 (argon2 알고리즘 사용)
